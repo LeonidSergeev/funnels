@@ -2,9 +2,9 @@
 # coding: utf-8
 """
 utility for calculating funnels using conversion metrics processor
-steps calc settings stored in query.yaml
+steps calc settings stored in query.yaml and super_query.yaml
 first sys argument is a provided funnel type
-funnel steps passed as command-line arguments where agrument = query name
+funnel steps passed as command-line arguments where agrument is a query name
 ex. "python funnel_calc.py app_opened trial subscription"
 
 author -- ToxaZ
@@ -59,7 +59,7 @@ def make_request(funnel_type, funnel_query):
 
 
 def time_based_super_funnel_to_df(results):
-    '''converting tb super funnel results to dataframe'''
+    '''converting super funnel results to dataframe'''
     first_run = True
     fields = []
     dates = []
@@ -88,7 +88,7 @@ def main():
     '''main script logic'''
     # parsing command-line arguments
     parser = argparse.ArgumentParser(description='Processing zvq funnels using conversion utils processor '
-                                    '(https://github.com/dreamindustries/zvq-report/tree/master/pyanalytics/kpi2/metrics/conversion_utils).')
+                                    '(http://bit.ly/1NvBGeq).')
     parser.add_argument('-s', '--super', help='return superfunnel instead of common funnel, '
                         'superfunnel allows to aggregate multiple identifiers.',
                         action="store_true")
@@ -112,14 +112,14 @@ def main():
 
     funnel_steps = args.funnel_steps
     query_file = 'query.yaml'
-    if args.super is True:
+    if args.super:
         query_file = 'super_query.yaml'
     
     # queries variables for debugging
     # print funnel_steps
     # print get_queries(
-                    query_file, funnel_steps, args.time_based
-                    )
+    #                query_file, funnel_steps, args.time_based
+    #                )
 
     if funnel_type == 'time_based_super_funnel':
         return time_based_super_funnel_to_df(
@@ -151,3 +151,4 @@ def main():
 #     main
 
 print main()
+
