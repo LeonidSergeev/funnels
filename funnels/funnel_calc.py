@@ -115,11 +115,8 @@ def main():
     if args.super:
         query_file = 'super_query.yaml'
     
-    # queries variables for debugging
-    # print funnel_steps
-    # print get_queries(
-    #                query_file, funnel_steps, args.time_based
-    #                )
+    # uncomment below to print queries content for debugging 
+    # print get_queries(query_file, funnel_steps, args.time_based)
 
     if funnel_type == 'time_based_super_funnel':
         return time_based_super_funnel_to_df(
