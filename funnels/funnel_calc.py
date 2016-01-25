@@ -114,8 +114,10 @@ def main():
     query_file = 'query.yaml'
     if args.super is True:
         query_file = 'super_query.yaml'
-    print funnel_steps
-    print get_queries(
+    
+    # queries variables for debugging
+    # print funnel_steps
+    # print get_queries(
                     query_file, funnel_steps, args.time_based
                     )
 
