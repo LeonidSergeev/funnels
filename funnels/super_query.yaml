@@ -20,3 +20,64 @@ active:
     agg_fields: ["app_instance", "user_id"]
     name: active
     timeout: 1000
+web_users_uk:
+    type: elastic
+    q: "properties.app:web AND NOT properties.utm-tags.utm_source:topt AND properties.user_cookie:*"
+    index: cs-*
+    agg_fields: app_instance
+    name: web_users_uk
+    timeout: 10000
+    chunk_size: 1000
+registration_web:
+    type: elastic
+    q: "properties.app: web AND properties.type: registration AND properties.user_cookie:*"
+    index: cs-authentication_successful*
+    agg_fields: app_instance
+    name: registration
+move_to_zvooq_plus: # paywall shown
+    type: elastic
+    q: "NOT properties.utm-tags.utm_source:topt AND properties.user_cookie:*"
+    index: cs-move_to_zvooq_plus_shown*
+    agg_fields: ['app_instance', 'user_id']
+    name: move_to_zvooq_plus
+    timeout: 10000
+    chunk_size: 1000
+payture_gate_shown: # web subscription page shown
+    type: elastic
+    q: "properties.url: *payture_gate* AND properties.user_cookie:*"
+    index: cs-constructor_block_shown*
+    agg_fields: ['app_instance', 'user_id']
+    name: payture_gate_shown
+payture_gate_purchase_clicked: # web subscription clicked
+    type: elastic
+    q: "properties.url: *payture_gate* AND properties.user_cookie:*"
+    index: cs-purchase_clicked*
+    agg_fields: ['app_instance', 'user_id']
+    name: payture_gate_purchase_clicked
+subscription:
+    type: psql
+    q: "select user_id from app_subscription where is_trial = false and app != 'fonoteka'"
+    agg_fields: user_id
+    name: subscription
+bud_page_shown_uc:
+    name: bud_page_shown_uc
+    type: elastic
+    q: "url: *bud*"
+    index: cs-constructor_block_shown*
+    agg_fields: app_instance
+bud_link_clicked_uc:
+    name: bud_link_clicked_uc
+    type: elastic
+    q: 'bud_link_clicked AND properties.url: "http://zvooq.ru/tm/bud?webview=1" AND -properties.user_cookie:*'
+    index: cs-bud_link_clicked*
+    agg_fields: ["app_instance", "user_id"]
+bud_subscriber_via_promocode:
+    type: hive
+    name: bud_subscriber_via_promocode
+    q: "select p.user_id from playevent p join fonoteka_promocode f on p.user_id = f.activated_by_user_id join promocode_campaign c on c.id = f.promocode_campaign_id where c.name = ('Zvooq for Bud') and f.is_activated = true and p.day >= to_date(f.activation) and p.day <= to_date(date_add(f.activation, 30)) group by p.user_id"
+    agg_fields: user_id
+subscription:
+    type: hive
+    name: subscription
+    q: "select user_id from app_subscription where is_trial = false and app != 'fonoteka' and price > 5 and platform in ('apple', 'google', 'zvooq')"
+    agg_fields: user_id

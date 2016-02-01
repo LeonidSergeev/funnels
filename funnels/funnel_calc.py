@@ -35,8 +35,7 @@ def get_queries(query_yaml, funnel_steps, time_unit=None):
 
     # changing default queries time unit for provided:
     if time_unit is not None:
-        for query in filtered_queries:
-            query['time_unit'] = time_unit
+        filtered_queries[0]['time_unit'] = time_unit
     return filtered_queries
 
 
@@ -60,28 +59,24 @@ def make_request(funnel_type, funnel_query):
 
 def time_based_super_funnel_to_df(results):
     '''converting super funnel results to dataframe'''
-    first_run = True
-    fields = []
-    dates = []
-    values = []
-    for time_unit, values_list in results.items():
-        dates.append(time_unit)
-        val = []
-        tmp_fields = []
-        for item in values_list:
-            val.append(item['value'])
-            tmp_fields.append(str(item['field']) + " " + str(item['name']))
+    records = []
+    for date, values_dict_list in results.items():
+        first_run = True
+        for values_dict in values_dict_list:
+            tmp_fields = []
+            values_dict['date'] = date
+            records.append(values_dict)
 
-        # checking fields consistency
-        if first_run:
-            fields = tmp_fields
-            first_run = False
-        else:
-            if fields != tmp_fields:
-                raise ValueError('item fields are not the same')
+            # checking fields consistency
+            if first_run:
+                column_names = tmp_fields
+                first_run = False
+            else:
+                if column_names != tmp_fields:
+                    raise ValueError('item fields are not the same')
 
-        values.append(val)
-    return pd.DataFrame(values, index=dates, columns=fields)
+    data = pd.DataFrame.from_records(records)
+    return pd.pivot_table(data, values='value', index='date', columns=['name', 'field'])
 
 
 def main():
@@ -95,6 +90,7 @@ def main():
     parser.add_argument('-t', '--time_based', help='splitting funnel by time units,'
                         'requires specifying a unit ("day", "week" or "month").',
                         type=str, choices=['day', 'week', 'month'], default=None)
+    parser.add_argument('-q', '--queiries', help='print queries parameters', action='store_true')
     parser.add_argument('funnel_steps', nargs='+', help='names of funnel steps in config file')
     args = parser.parse_args()
 
@@ -114,9 +110,9 @@ def main():
     query_file = 'query.yaml'
     if args.super:
         query_file = 'super_query.yaml'
-    
-    # uncomment below to print queries content for debugging 
-    # print get_queries(query_file, funnel_steps, args.time_based)
+
+    if args.queiries:
+        print get_queries(query_file, funnel_steps, args.time_based)
 
     if funnel_type == 'time_based_super_funnel':
         return time_based_super_funnel_to_df(
@@ -148,4 +144,3 @@ def main():
 #     main
 
 print main()
-
