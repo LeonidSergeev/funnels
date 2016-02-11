@@ -160,116 +160,123 @@ install_from_beeline:
     q: 'mat_info.sub_site: "b"'
     index: cs-mat_app_install*
     agg_field: app_instance
-sync_pop_up_shown_premium_v10:
+
+sync_pop_up_shown_v10:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: sync AND properties.app_release: 1.10*"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: sync AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-skip_pop_up_shown_premium_v10:
+skip_pop_up_shown_v10:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: skip AND properties.app_release: 1.10*"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: skip AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-rewind_pop_up_shown_premium_v10:
+rewind_pop_up_shown_v10:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: rewind AND properties.app_release: 1.10*"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: rewind AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-after_login_pop_up_shown_premium_v10:
+after_login_pop_up_shown_v10:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: after_login AND properties.app_release: 1.10*"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: after_login AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-offline_pop_up_shown_premium_v10:
+offline_pop_up_shown_v10:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: offline AND properties.app_release: 1.10*"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: offline AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
 
 pop_up_shown_continue_v10:
     type: elastic
-    q: "properties.os: android AND properties.type: premium  AND properties.button_pressed: continue AND properties.app_release: 1.10*"
+    q: "properties.os: android  AND properties.button_pressed: continue AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-pop_up_shown_continue_trial_v11:
+pop_up_shown_continue_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq*
-    agg_field: user_id
-pop_up_shown_continue_premium_v11:
-    type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq*
     agg_field: user_id
 
-sync_pop_up_shown_trial_v11:
+sync_pop_up_shown_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND properties.reason: sync AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: sync AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-skip_pop_up_shown_trial_v11:
+skip_pop_up_shown_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND properties.reason: skip AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: skip AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-rewind_pop_up_shown_trial_v11:
+rewind_pop_up_shown_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND properties.reason: rewind AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: rewind AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-after_login_pop_up_shown_trial_v11:
+after_login_pop_up_shown_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND properties.reason: after_login AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: after_login AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-purchase_button_pop_up_shown_trial_v11:
+purchase_button_pop_up_shown_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND properties.reason: purchase_button AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: purchase_button AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-hq_pop_up_shown_trial_v11:
+hq_pop_up_shown_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND properties.reason: hq AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: hq AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-offline_pop_up_shown_trial_v11:
+offline_pop_up_shown_v11:
     type: elastic
-    q: "properties.os: android AND properties.type: trial AND properties.button_pressed: continue AND properties.reason: offline AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
+    q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: offline AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
+    agg_field: user_id
+main_page_moods_shown:
+    type: elastic
+    q: "*"
+    index: cs-main_page_moods_shown*
+    agg_field: user_id
+mood_page_clicked:
+    type: elastic
+    q: "(event: main_page_clicked AND (properties.content_type: mood OR properties.content_type: situation)) OR (event: moods_page_clicked AND (properties.content_type: mood OR properties.content_type: situation))"
+    index: cs-*
+    agg_field: user_id
+mood_playlist_opened:
+    type: elastic
+    q: 'event: moods_page_clicked AND properties.content_type: playlist AND (properties.url: *playlists\/m* OR properties.url: *playlists\/s*)'
+    index: cs-moods_page*
+    agg_field: user_id
+mood_playlist_play_clicked:
+    type: elastic
+    q: '(properties.url: *playlists\/m* OR properties.url: *playlists\/s*)'
+    index: cs-global_play*
+    agg_field: user_id
+web_playlist_listeners_10mins:
+    type: hive
+    q: 'select user_id from (select user_id , play_duration from playevent where src_type = "playlist" and good_app = "web") a group by user_id having sum(play_duration) > 600'
+mood_playlist_any_action:
+    type: elastic
+    q: '(event: moods_page_clicked AND properties.content_type: playlist AND (properties.url: *playlists\/m* OR properties.url: *playlists\/s*)) OR (event: global_play AND (properties.url: *playlists\/m* OR properties.url: *playlists\/s*))'
+    index: cs-*
     agg_field: user_id
 
-sync_pop_up_shown_premium_v11:
+main_page_genres_shown:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: sync AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq_plus_pop_up_shown*
+    q: "-properties.page_type: genres"
+    index: cs-main_page_genres_shown*
     agg_field: user_id
-skip_pop_up_shown_premium_v11:
+genres_page_clicked:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: skip AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq_plus_pop_up_shown*
+    q: "properties.content_type: genre"
+    index: cs-main_page_clicked*
     agg_field: user_id
-rewind_pop_up_shown_premium_v11:
+genres_playlist_any_action:
     type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: rewind AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq_plus_pop_up_shown*
+    q: 'event: genres_page_clicked OR (event: global_play AND properties.url: *genre*)'
+    index: cs-*
     agg_field: user_id
-after_login_pop_up_shown_premium_v11:
-    type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: after_login AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq_plus_pop_up_shown*
-    agg_field: user_id
-purchase_button_pop_up_shown_premium_v11:
-    type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: purchase_button AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq_plus_pop_up_shown*
-    agg_field: user_id
-hq_pop_up_shown_premium_v11:
-    type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: hq AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq_plus_pop_up_shown*
-    agg_field: user_id
-offline_pop_up_shown_premium_v11:
-    type: elastic
-    q: "properties.os: android AND properties.type: premium AND properties.button_pressed: continue AND properties.reason: offline AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
-    index: cs-try_zvooq_plus_pop_up_shown*
-    agg_field: user_id
+web_playlist_album_listeners_10mins:
+    type: hive
+    q: 'select user_id from (select user_id , play_duration from playevent where src_type = "playlist" or src_type = "release" and good_app = "web") a group by user_id having sum(play_duration) > 600'
