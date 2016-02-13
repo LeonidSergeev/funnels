@@ -5,7 +5,7 @@
 Queries stored in YAML file format. Naming them is one of the key issues: queries usually called from outer sources so the name should be consistent. Following simple convention is crucial.
 
 * Name of the query explains its content completely.
-* Order of name parts *'event', 'any additional parameters', 'keywords'*.
+* Order of name parts: *'event', 'any additional parameters', 'keywords'*.
 * Most query parts should be omitted if they're equal to default values or their usage is obvious.
 * Default query:
     * `agg_fields: user_id`
