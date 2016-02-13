@@ -8,7 +8,7 @@ Queries stored in YAML file format. Naming them is one of the key issues: querie
 * Order of name parts 'event', 'any additional parameters', 'keywords'.
 * Most query parts should be omitted if they're equal to default values or their usage is obvious.
 * Default query:
-    * `agg_field: user_id`
+    * `agg_fields: user_id`
     * `type: elastic`
     * no Fonoteka events: either explicitly `NOT properties.app: Fonoteka` or using events not related to Fonoteka
     * not time based
@@ -17,16 +17,16 @@ Valid abbreviations
 
 |parmeter value|abberviation|
 | ------------ |:----------:|
-|`agg_field: properties.user_cookie`|Uc|
-|`agg_field: properties.app_instance`|Ai|
-|`agg_field: ip`|Ip|
-|`agg_field: user_id` (only for several agg fields)|Ui|
+|`agg_fields: properties.user_cookie`|Uc|
+|`agg_fields: properties.app_instance`|Ai|
+|`agg_fields: ip`|Ip|
+|`agg_fields: user_id` (only for several agg fields)|Ui|
 |`type: hive`|H|
 |`type: psql`|Ps|
 |time based query - day|D|
 |time based query - week|W|
 |time based query - month|M|
-|Fonoteak users included|F|
+|Fonoteak events included|F|
 
 ### Queries examples
 
@@ -47,12 +47,12 @@ app_opened_android_vmetro_Ai: # two additional parameters and a keyword
     type: elastic
     q: "NOT properties.app: fonoteka AND properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
-    agg_field: properties.app_instance
+    agg_fields: properties.app_instance
 app_opened_android_vmetro_FAi: # keywords look better stacked, not separated by underscore
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
-    agg_field: properties.app_instance
+    agg_fields: properties.app_instance
 app_opened_android_vmetro_FAiUi: # several agg fields
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
