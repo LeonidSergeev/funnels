@@ -26,6 +26,7 @@ Valid abbreviations
 |time based query - day|d|
 |time based query - week|w|
 |time based query - month|m|
+|time based query - year|y|
 |Fonoteka events included|f|
 
 ### Queries examples
