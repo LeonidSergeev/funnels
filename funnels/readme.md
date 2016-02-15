@@ -17,16 +17,16 @@ Valid abbreviations
 
 |parmeter value|abberviation|
 | ------------ |:----------:|
-|`agg_fields: properties.user_cookie`|Uc|
-|`agg_fields: properties.app_instance`|Ai|
+|`agg_fields: properties.user_cookie`|uc|
+|`agg_fields: properties.app_instance`|ai|
 |`agg_fields: ip`|Ip|
-|`agg_fields: user_id` (only for several agg fields)|Ui|
-|`type: hive`|H|
-|`type: psql`|Ps|
-|time based query - day|D|
-|time based query - week|W|
-|time based query - month|M|
-|Fonoteak events included|F|
+|`agg_fields: user_id` (only for several agg fields)|ui|
+|`type: hive`|h|
+|`type: psql`|ps|
+|time based query - day|d|
+|time based query - week|w|
+|time based query - month|m|
+|Fonoteak events included|f|
 
 ### Queries examples
 
@@ -43,28 +43,28 @@ app_opened_android_vmetro: # two additional parameters
     type: elastic
     q: "NOT properties.app: fonoteka AND properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*    
-app_opened_android_vmetro_Ai: # two additional parameters and a keyword
+app_opened_android_vmetro_ai: # two additional parameters and a keyword
     type: elastic
     q: "NOT properties.app: fonoteka AND properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
     agg_fields: properties.app_instance
-app_opened_android_vmetro_FAi: # keywords look better stacked, not separated by underscore
+app_opened_android_vmetro_f_ai: # keywords look better stacked, not separated by underscore
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
     agg_fields: properties.app_instance
-app_opened_android_vmetro_FAiUi: # several agg fields
+app_opened_android_vmetro_f_ai_ui: # several agg fields
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
     agg_fields: ["app_instance", "user_id"]
-app_opened_android_vmetro_FAiUiW: # time based funnel
+app_opened_android_vmetro_f_ai_ui_w: # time based funnel
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
     time_unit: week
     agg_fields: ["app_instance", "user_id"]
-app_opened_android_vmetro_FAiUiW: # no need to specify technical settings like chunk_size or timeout 
+app_opened_android_vmetro_f_ai_ui_w: # no need to specify technical settings like chunk_size or timeout 
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
@@ -72,7 +72,7 @@ app_opened_android_vmetro_FAiUiW: # no need to specify technical settings like c
     chunk_size: 1000
     timeout: 10000
     agg_fields: ["app_instance", "user_id"]
-app_opened_android_vmetro_FAiUiW: 
+app_opened_android_vmetro_f_ai_ui_w: 
     name: app_opened_android_vmetro_FAiUiW # correct name of query helps much interpreting the results
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
