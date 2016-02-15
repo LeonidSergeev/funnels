@@ -1,4 +1,4 @@
-# Steak Funnnel Wrapper
+# Steak Funnel Wrapper
 
 ## Queries Specification
 
@@ -26,7 +26,7 @@ Valid abbreviations
 |time based query - day|d|
 |time based query - week|w|
 |time based query - month|m|
-|Fonoteak events included|f|
+|Fonoteka events included|f|
 
 ### Queries examples
 
@@ -73,7 +73,7 @@ app_opened_android_vmetro_f_ai_ui_w: # no need to specify technical settings lik
     timeout: 10000
     agg_fields: ["app_instance", "user_id"]
 app_opened_android_vmetro_f_ai_ui_w: 
-    name: app_opened_android_vmetro_FAiUiW # correct name of query helps much interpreting the results
+    name: app_opened_android_vmetro_f_ai_ui_w # correct name of query helps much interpreting the results
     type: elastic
     q: "properties.os: android AND mat_info.sub_site:vmetro"
     index: cs-app_opened*
