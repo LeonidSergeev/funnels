@@ -15,7 +15,7 @@ subscription_android:
 subscription:
     type: psql
     q: "select user_id from app_subscription where is_trial = false and app != 'fonoteka' and price > 5 and platform in ('apple', 'google', 'zvooq')"
-app_opened_android_ai:
+app_opened_android:
     type: elastic
     q: "NOT properties.app: fonoteka AND properties.os: android"
     time_unit: month"
@@ -40,7 +40,7 @@ active_ai:
     q: "NOT properties.app: fonoteka"
     index: cs-track_playback*
     agg_field: app_instance
-active_uk:
+active_uc:
     type: elastic
     q: "NOT properties.app: fonoteka"
     index: cs-track_playback*
@@ -73,7 +73,7 @@ web_users:
     type: elastic
     q: "properties.app:web AND NOT properties.utm-tags.utm_source:topt"
     index: cs-*
-web_users_agg_by_cookie:
+web_users_uc:
     type: elastic
     q: "properties.app:web AND NOT properties.utm-tags.utm_source:topt"
     index: cs-*
@@ -96,24 +96,24 @@ mobile_pop_up_action:
     type: elastic
     q: "properties.type: pop-up"
     index: cs-mobile_link_requested*
-app_open_version:
+app_open_version_ai_y:
     type: elastic
     q: "properties.os: android AND properties.app_release: 1.9*"
     index: cs-app_opened*
     time_unit: year
     agg_field: app_instance
-registration_agg_by_app_instance:
+authentication_successful_agg_by_ai:
     type: elastic
     q: "*"
     index: cs-authentication_successful*
     agg_field: app_instance
-registration_agg_by_user_cookie:
+authentication_successful_by_uc_w:
     type: elastic
     q: "*"
     index: cs-authentication_successful*
     time_unit: week
     agg_field: properties.user_cookie
-app_registration_elastic:
+authentication_successful_android:
     type: elastic
     q: "properties.os: android AND properties.app_release: 1.10*"
     index: cs-authentication_successful*
@@ -123,7 +123,7 @@ time_based_trial:
 time_based_subscription:
     type: psql
     q: "select user_id, added from app_subscription where is_trial = false and app != 'fonoteka'"
-move_to_zvooq_plus_agg_by_user_cookie:
+move_to_zvooq_plus_by_uc:
     type: elastic
     q: "NOT properties.utm-tags.utm_source:topt"
     index: cs-move_to_zvooq_plus_shown*
@@ -133,13 +133,13 @@ move_to_zvooq_plus:
     type: elastic
     q: "NOT properties.utm-tags.utm_source:topt"
     index: cs-move_to_zvooq_plus_shown*
-payture_gate_shown_agg_by_user_cookie:
+payture_gate_shown_agg_uc:
     type: elastic
     q: "properties.url: *payture_gate*"
     index: cs-constructor_block_shown*
     time_unit: week
     agg_field: properties.user_cookie
-payture_gate_purchase_clicked_agg_by_user_cookie:
+payture_gate_purchase_clicked_by_uc:
     type: elastic
     q: "properties.url: *payture_gate*"
     index: cs-purchase_clicked*
@@ -155,7 +155,7 @@ beeline_subscription_successful:
     q: "*"
     index: cs-beeline_subscription_successful*
     agg_field: user_id
-install_from_beeline:
+install_from_beeline_ai:
     type: elastic
     q: 'mat_info.sub_site: "b"'
     index: cs-mat_app_install*
