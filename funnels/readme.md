@@ -31,7 +31,7 @@ Valid abbreviations
 ### Queries examples
 
 ~~~yaml
-app_opened_android: # no need to specify anything since only default values are used
+app_opened: # no need to specify anything since only default values are used
     type: elastic
     q: "NOT properties.app: fonoteka"
     index: cs-app_opened*
