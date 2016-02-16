@@ -15,7 +15,7 @@ subscription_android:
 subscription:
     type: psql
     q: "select user_id from app_subscription where is_trial = false and app != 'fonoteka' and price > 5 and platform in ('apple', 'google', 'zvooq')"
-app_opened_android:
+app_opened_android_m:
     type: elastic
     q: "NOT properties.app: fonoteka AND properties.os: android"
     time_unit: month"
@@ -73,7 +73,7 @@ web_users:
     type: elastic
     q: "properties.app:web AND NOT properties.utm-tags.utm_source:topt"
     index: cs-*
-web_users_uc:
+web_users_uc_w:
     type: elastic
     q: "properties.app:web AND NOT properties.utm-tags.utm_source:topt"
     index: cs-*
@@ -96,13 +96,12 @@ mobile_pop_up_action:
     type: elastic
     q: "properties.type: pop-up"
     index: cs-mobile_link_requested*
-app_open_version_ai_y:
+app_open_version_ai:
     type: elastic
     q: "properties.os: android AND properties.app_release: 1.9*"
     index: cs-app_opened*
-    time_unit: year
     agg_field: app_instance
-authentication_successful_agg_by_ai:
+authentication_successful_ai:
     type: elastic
     q: "*"
     index: cs-authentication_successful*
@@ -123,7 +122,7 @@ time_based_trial:
 time_based_subscription:
     type: psql
     q: "select user_id, added from app_subscription where is_trial = false and app != 'fonoteka'"
-move_to_zvooq_plus_by_uc:
+move_to_zvooq_plus_by_uc_w:
     type: elastic
     q: "NOT properties.utm-tags.utm_source:topt"
     index: cs-move_to_zvooq_plus_shown*
@@ -133,7 +132,7 @@ move_to_zvooq_plus:
     type: elastic
     q: "NOT properties.utm-tags.utm_source:topt"
     index: cs-move_to_zvooq_plus_shown*
-payture_gate_shown_agg_uc:
+payture_gate_shown_agg_uc_w:
     type: elastic
     q: "properties.url: *payture_gate*"
     index: cs-constructor_block_shown*
@@ -160,75 +159,72 @@ install_from_beeline_ai:
     q: 'mat_info.sub_site: "b"'
     index: cs-mat_app_install*
     agg_field: app_instance
-
-sync_pop_up_shown_v10:
+sync_pop_up_shown_android_v10:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: sync AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-skip_pop_up_shown_v10:
+skip_pop_up_shown_android_v10:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: skip AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-rewind_pop_up_shown_v10:
+rewind_pop_up_shown_android_v10:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: rewind AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-after_login_pop_up_shown_v10:
+after_login_pop_up_shown_android_v10:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: after_login AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-offline_pop_up_shown_v10:
+offline_pop_up_shown_android_v10:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: offline AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-
-pop_up_shown_continue_v10:
+pop_up_shown_continue_android_v10:
     type: elastic
     q: "properties.os: android  AND properties.button_pressed: continue AND properties.app_release: 1.10*"
     index: cs-try_zvooq*
     agg_field: user_id
-pop_up_shown_continue_v11:
+pop_up_shown_continue_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq*
     agg_field: user_id
-
-sync_pop_up_shown_v11:
+sync_pop_up_shown_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: sync AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-skip_pop_up_shown_v11:
+skip_pop_up_shown_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: skip AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-rewind_pop_up_shown_v11:
+rewind_pop_up_shown_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: rewind AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-after_login_pop_up_shown_v11:
+after_login_pop_up_shown_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: after_login AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-purchase_button_pop_up_shown_v11:
+purchase_button_pop_up_shown_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: purchase_button AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-hq_pop_up_shown_v11:
+hq_pop_up_shown_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: hq AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
     agg_field: user_id
-offline_pop_up_shown_v11:
+offline_pop_up_shown_android_v11:
     type: elastic
     q: "properties.os: android AND properties.button_pressed: continue AND properties.reason: offline AND (properties.app_release: 1.11 OR properties.app_release: 1.11.5 OR properties.app_release: 1.12)"
     index: cs-try_zvooq_plus_pop_up_shown*
@@ -261,7 +257,6 @@ mood_playlist_any_action:
     q: '(event: moods_page_clicked AND properties.content_type: playlist AND (properties.url: *playlists\/m* OR properties.url: *playlists\/s*)) OR (event: global_play AND (properties.url: *playlists\/m* OR properties.url: *playlists\/s*))'
     index: cs-*
     agg_field: user_id
-
 main_page_genres_shown:
     type: elastic
     q: "-properties.page_type: genres"

@@ -59,7 +59,7 @@ subscription:
     q: "select user_id from app_subscription where is_trial = false and app != 'fonoteka'"
     agg_fields: user_id
     name: subscription
-bud_page_shown_uc:
+bud_page_shown_ai:
     name: bud_page_shown_uc
     type: elastic
     q: "url: *zvooq*bud*"
@@ -68,7 +68,7 @@ bud_page_shown_uc:
     timeout: 1000
     chunk_size: 1000
 bud_link_clicked_uc:
-    name: bud_link_clicked_uc
+    name: bud_link_clicked_ai_ui
     type: elastic
     q: 'properties.url: "http://zvooq.ru/tm/bud?webview=1"'
     index: cs-bud_link_clicked*
