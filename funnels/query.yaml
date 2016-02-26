@@ -18,7 +18,7 @@ subscription:
 app_opened_android_m:
     type: elastic
     q: "NOT properties.app: fonoteka AND properties.os: android"
-    time_unit: month"
+    time_unit: month
     index: cs-app_opened*
 app_opened_ios_ai:
     type: elastic
@@ -106,7 +106,7 @@ authentication_successful_ai:
     q: "*"
     index: cs-authentication_successful*
     agg_field: app_instance
-authentication_successful_by_uc_w:
+authentication_successful_uc_w:
     type: elastic
     q: "*"
     index: cs-authentication_successful*
@@ -275,3 +275,12 @@ genres_playlist_any_action:
 web_playlist_album_listeners_10mins:
     type: hive
     q: 'select user_id from (select user_id , play_duration from playevent where src_type = "playlist" or src_type = "release" and good_app = "web") a group by user_id having sum(play_duration) > 600'
+web_good_visitors_m:
+    type: elastic
+    q: "properties.app: web AND -properties.url: *topt*"
+    index: cs-*
+    time_unit: month
+    agg_field: user_id
+subscription_jan:
+    type: psql
+    q: "select user_id from app_subscription where is_trial = false and app != 'fonoteka' and price > 5 and platform in ('apple', 'google', 'zvooq') and added > '2016-01-01'"

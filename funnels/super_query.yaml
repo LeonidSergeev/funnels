@@ -1,76 +1,76 @@
-app_opened:
+app_opened_ai_ui:
     type: elastic
-    q: "*"
+    q: "properties.user_cookie:*"
     index: cs-app_opened-2016*
     agg_fields: ["app_instance", "user_id"]
-    name: app_opened
+    name: app_opened_ai_ui
     timeout: 10000
     chunk_size: 1000
-install_ios:
+install_ios_ai:
     type: elastic
-    q: "properties.mat_app: 'Zvooq iOS'"
+    q: "properties.mat_app: 'Zvooq iOS' AND properties.user_cookie:*"
     index: cs-mat_app_install-2016*
     agg_fields: app_instance
-    name: install_ios
+    name: install_ios_ai
     timeout: 1000
-active:
+active_ai_ui:
     type: elastic
-    q: "*"
+    q: "properties.user_cookie:*"
     index: cs-playevent-2016*
     agg_fields: ["app_instance", "user_id"]
-    name: active
+    name: active_ai_ui
     timeout: 1000
-web_users_uk:
+web_users_ai:
     type: elastic
     q: "properties.app:web AND NOT properties.utm-tags.utm_source:topt AND properties.user_cookie:*"
     index: cs-*
     agg_fields: app_instance
-    name: web_users_uk
+    name: web_users_ai
     timeout: 10000
     chunk_size: 1000
-registration_web:
+registration_web_ai:
     type: elastic
     q: "properties.app: web AND properties.type: registration AND properties.user_cookie:*"
     index: cs-authentication_successful*
     agg_fields: app_instance
-    name: registration
-move_to_zvooq_plus: # paywall shown
+    name: registration_web_ai
+move_to_zvooq_plus_ai_ui: # paywall shown
     type: elastic
     q: "NOT properties.utm-tags.utm_source:topt AND properties.user_cookie:*"
     index: cs-move_to_zvooq_plus_shown*
     agg_fields: ['app_instance', 'user_id']
-    name: move_to_zvooq_plus
+    name: move_to_zvooq_plus_ai_ui
     timeout: 10000
     chunk_size: 1000
-payture_gate_shown: # web subscription page shown
+payture_gate_shown_ai_ui: # web subscription page shown
     type: elastic
     q: "properties.url: *payture_gate* AND properties.user_cookie:*"
     index: cs-constructor_block_shown*
     agg_fields: ['app_instance', 'user_id']
-    name: payture_gate_shown
-payture_gate_purchase_clicked: # web subscription clicked
+    name: payture_gate_shown_ai_ui
+payture_gate_purchase_clicked_ai_ui: # web subscription clicked
     type: elastic
     q: "properties.url: *payture_gate* AND properties.user_cookie:*"
     index: cs-purchase_clicked*
     agg_fields: ['app_instance', 'user_id']
-    name: payture_gate_purchase_clicked
+    name: payture_gate_purchase_clicked_ai_ui
 subscription:
     type: psql
     q: "select user_id from app_subscription where is_trial = false and app != 'fonoteka'"
     agg_fields: user_id
     name: subscription
 bud_page_shown_ai:
-    name: bud_page_shown_uc
+    name: bud_page_shown_ai
     type: elastic
-    q: "url: *zvooq*bud*"
+    q: "url: *zvooq*bud* AND properties.user_cookie:*"
     index: cs-constructor_block_shown*
     agg_fields: app_instance
     timeout: 1000
     chunk_size: 1000
-bud_link_clicked_uc:
+bud_link_clicked_ai_ui:
     name: bud_link_clicked_ai_ui
     type: elastic
-    q: 'properties.url: "http://zvooq.ru/tm/bud?webview=1"'
+    q: 'properties.url: "http://zvooq.ru/tm/bud?webview=1" AND properties.user_cookie:*'
     index: cs-bud_link_clicked*
     agg_fields: ["app_instance", "user_id"]
     timeout: 1000
